@@ -10,6 +10,34 @@
 
   gtag('config', 'G-3D819FG3WR');
 </script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a[href^="mailto:contacto@excellum.cl"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const destino = this.href;
+      let abierto = false;
+
+      function abrirCorreo() {
+        if (abierto) return;
+        abierto = true;
+        window.location.href = destino;
+      }
+
+      gtag('event', 'contacto_click', {
+        'contact_method': 'email',
+        'link_url': destino,
+        'send_to': 'G-3D819FG3WR',
+        'event_callback': abrirCorreo,
+        'event_timeout': 1000
+      });
+
+      setTimeout(abrirCorreo, 1200);
+    });
+  });
+});
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Excellum | Arquitectura del Control · Rev.00</title>
